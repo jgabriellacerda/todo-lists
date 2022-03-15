@@ -1,0 +1,12 @@
+.delete {
+    color: red;
+    font-size: 0.8em;
+}
+
+.delete:hover {
+    cursor: pointer;
+}
+
+#list-container {
+    width: 100%;
+}
