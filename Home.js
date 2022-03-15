@@ -1,7 +1,3 @@
-$(() => {
-    Alpine.star
-})
-
 let ListComponent = function(name) {
 
     let todoCounter = 0;
