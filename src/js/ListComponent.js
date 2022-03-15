@@ -1,6 +1,7 @@
 let ListComponent = function(name) {
 
     let todoCounter = 0;
+    let todos = [];
 
     function pushTodo(todo) {
         this.todos.push(todo);
@@ -30,10 +31,13 @@ let ListComponent = function(name) {
 
     return {
         name,
-        todos: [],
+        todos,
         pushTodo,
         popTodo,
         addTodo,
         deleteTodo,
     }
 };
+
+
+module.exports = ListComponent;
