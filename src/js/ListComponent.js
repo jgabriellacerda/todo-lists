@@ -1,4 +1,4 @@
-let ListComponent = function (name) {
+let ListComponent = function (name, ID) {
 	let todoCounter = 0;
 	let todos = [];
 
@@ -6,9 +6,9 @@ let ListComponent = function (name) {
 		this.todos.push(todo);
 	}
 
-	function popTodo(id) {
+	function popTodo(ID) {
 		let filteredTodos = this.todos.filter((todo) => {
-			return todo.ID !== id;
+			return todo.ID !== ID;
 		});
 		this.todos = filteredTodos;
 	}
@@ -16,8 +16,9 @@ let ListComponent = function (name) {
 	function addTodo(todoText) {
 		if (todoText != "") {
 			todoCounter++;
+			let todoID = todoCounter;
 			let newTodo = {
-				ID: todoCounter,
+				ID: todoID,
 				text: todoText,
 			};
 			this.pushTodo(newTodo);
@@ -40,13 +41,13 @@ let ListComponent = function (name) {
 	}
 
 	return {
+		ID,
 		name,
 		todos,
 		pushTodo,
 		popTodo,
 		addTodo,
 		deleteTodo,
-		updateName,
 	};
 };
 

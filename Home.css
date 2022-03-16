@@ -1,12 +1,22 @@
 .delete {
-    color: red;
-    font-size: 0.8em;
+	color: red;
+	font-size: 0.8em;
 }
 
 .delete:hover {
-    cursor: pointer;
+	cursor: pointer;
 }
 
 #list-container {
-    width: 100%;
+	width: 100%;
+}
+
+.btn-delete-list,
+.btn-delete-list:hover {
+	display: flex;
+	font-size: x-large;
+	padding: 0 5px;
+	color: red;
+	cursor: pointer;
+	text-decoration: none;
 }
