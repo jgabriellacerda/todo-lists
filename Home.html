@@ -10,7 +10,7 @@
     <script src="https://kit.fontawesome.com/61ada1e52f.js" crossorigin="anonymous"></script>
     <script src="./assets/js/jquery.min.js"></script>
     <script src="./assets/js/sweetalert2.all.min.js"></script>
-    <script src="./assets/js/index.min.js"></script>
+    <script src="./assets/js/bootstrap.bundle.min.js"></script>
     <script defer src="./assets/js/alpine.min.js"></script>
     <script src="./assets/js/home.bundle.js"></script>
 
@@ -30,66 +30,98 @@
     <div id="home-container" x-data="{home: HomeComponent()}">
         <div>
             <div class="row">
-                <div class="col-4"></div>
-                <div class="col-12 col-md-4 d-flex flex-column justify-content-center align-items-center">
-                    <template x-if="home.lists.length == 0">
-                        <h1 class="text-center">Crie sua primeira lista!</h1>
-                    </template>
-                    <template x-for="list of home.lists">
-                        <div id="list-container">
-                            <div class="d-flex flex-row justify-content-center align-items-center">
-                                <h1 x-text="list.name" class="text-center"
-                                    @focusout="list.updateName($event.target.textContent)" contenteditable="true">
-                                </h1>
-                                <a @click="home.deleteList(list.ID)">
-                                    <i class="fa-solid fa-x btn-delete-list"></i>
-                                </a>
+                <div class="col-lg-2"></div>
+                <div class="col-12 col-lg-8">
+                    <div class="col-12 d-flex flex-column justify-content-center align-items-center">
+                        <div class="jumbotron jumbotron-fluid p-4 m-4">
+                            <div class="container">
+                                <h1>Minhas listas</h1>
+
                             </div>
-                            <div x-data="{ newTodo: '' }">
-                                <template x-if="list.todos.length == 0">
-                                    <p class="text-center">Lista vazia.</p>
-                                </template>
-                                <template x-if="list.todos.length > 0">
-                                    <ul class="d-flex flex-column justify-content-center align-items-center">
-                                        <template x-for="todo in list.todos">
-                                            <li>
-                                                <span x-text="todo.text"></span>
-                                                <a @click="list.deleteTodo(todo.ID)">
-                                                    <i class="fa-solid fa-x delete"></i>
-                                                </a>
-                                            </li>
-                                        </template>
-                                    </ul>
-                                </template>
-                                <div class="d-flex flex-row justify-content-center align-items-center">
-                                    <div class="p-1">
-                                        <input class="p-1" type="text" x-model="newTodo" placeholder="new to do..."
-                                            required />
+
+                        </div>
+                        <div class="row w-100">
+                            <template x-for="list of home.lists">
+                                <div class="col-12 col-md-6 p-0">
+                                    <div id="list-container">
+                                        <div class="card border-dark m-4 list-card">
+                                            <div class="d-flex flex-column justify-content-between flex-1">
+                                                <div
+                                                    class="card-header d-flex flex-row justify-content-center align-items-center">
+                                                    <h2 class="m-0 text-center flex-1" x-text="list.name"
+                                                        class="text-center"
+                                                        @focusout="list.updateName($event.target.textContent)"
+                                                        contenteditable="true">
+                                                    </h2>
+                                                    <a class="p-1" @click="home.deleteList(list.ID)">
+                                                        <i class="fa-solid fa-x btn-delete-list"></i>
+                                                    </a>
+                                                </div>
+                                                <div x-data="{ newTodo: '' }"
+                                                    class="card-body d-flex flex-column justify-content-between flex-1">
+                                                    <template x-if="list.todos.length == 0">
+                                                        <div>
+                                                            <p class="text-center">Lista vazia.</p>
+                                                        </div>
+                                                    </template>
+                                                    <template x-if="list.todos.length > 0">
+                                                        <ul
+                                                            class="d-flex flex-column justify-content-center align-items-center">
+                                                            <template x-for="todo in list.todos">
+                                                                <li>
+                                                                    <span x-text="todo.text"></span>
+                                                                    <a @click="list.deleteTodo(todo.ID)">
+                                                                        <i class="fa-solid fa-x delete"></i>
+                                                                    </a>
+                                                                </li>
+                                                            </template>
+                                                        </ul>
+                                                    </template>
+                                                    <div
+                                                        class="d-flex flex-row justify-content-center align-items-center">
+                                                        <div class="p-1">
+                                                            <input class="p-1" type="text" x-model="newTodo"
+                                                                placeholder="nova tarefa..." required />
+                                                        </div>
+                                                        <div
+                                                            class="d-flex flex-row justify-content-center align-items-center">
+                                                            <span class="m-1">
+                                                                <button type="button" class="btn btn-primary"
+                                                                    @click="list.addTodo(newTodo)">
+                                                                    <i class="fa-solid fa-plus"></i>
+                                                                </button>
+                                                            </span>
+                                                            <span class="m-1">
+                                                                <button type="button" class="btn btn-warning"
+                                                                    @click="list.randomTodo()">
+                                                                    <i class="fa-regular fa-lightbulb"></i>
+                                                                </button>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
-                                    <div class="d-flex flex-row justify-content-center align-items-center">
-                                        <span class="m-1">
-                                            <a class="btn btn-primary" @click="list.addTodo(newTodo)">
-                                                <i class="fa-solid fa-plus"></i>
-                                            </a>
-                                        </span>
-                                        <span class="m-1">
-                                            <a class="btn btn-warning" @click="list.randomTodo()">
-                                                <i class="fa-regular fa-lightbulb"></i>
-                                            </a>
-                                        </span>
+                                </div>
+                            </template>
+                            <div class="col-12 col-md-6 p-0">
+                                <div id="list-container">
+                                    <div class="card border-secondary list-card card-add-list m-4 p-4 d-flex justify-content-center align-items-center"
+                                        @click="home.addList()">
+                                        <!-- <a class=" btn btn-primary btn-add-card"> -->
+                                        <i class="fa-solid fa-plus xx-large"></i>
+                                        <!-- </a> -->
                                     </div>
                                 </div>
                             </div>
-                            <hr>
+                            <!-- <div class="p-4 w-100 d-flex justify-content-center">
+                                
+                            </div> -->
                         </div>
-                    </template>
-                    <div>
-                        <a class="btn btn-primary" @click="home.addList()">
-                            <i class="fa-solid fa-plus"></i>
-                        </a>
                     </div>
                 </div>
-                <div class="col-4">
+                <div class="col-lg-2">
                 </div>
             </div>
         </div>
