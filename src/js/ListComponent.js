@@ -48,6 +48,7 @@ let ListComponent = function (name, ID) {
 		popTodo,
 		addTodo,
 		deleteTodo,
+		updateName,
 	};
 };
 
