@@ -77,6 +77,29 @@ let ListComponent = function (name, ID) {
 		}
 	}
 
+	async function randomTodo() {
+		let response = await fetch("https://www.boredapi.com/api/activity/");
+		let data = await response.json();
+		if (data.activity) {
+			let todoText = data.activity;
+			this.addTodo(todoText);
+		} else {
+			showErrorAlert();
+		}
+	}
+
+	function showErrorAlert() {
+		Swal.fire({
+			title: "Erro!",
+			icon: "error",
+			text: "Algo deu errado, tente novamente mais tarde",
+			customClass: {
+				confirmButton: "btn btn-secondary",
+			},
+			buttonsStyling: false,
+		});
+	}
+
 	return {
 		ID,
 		name,
@@ -86,6 +109,7 @@ let ListComponent = function (name, ID) {
 		addTodo,
 		deleteTodo,
 		updateName,
+		randomTodo,
 	};
 };
 
