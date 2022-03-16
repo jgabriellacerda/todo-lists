@@ -19,6 +19,7 @@
 
         <style>
             @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
             body {
                 font-family: 'Roboto', sans-serif;
             }
@@ -26,15 +27,20 @@
     </head>
 
     <body>
+    <div id="home-container" x-data="{home: HomeComponent()}">
+        <div>
         <div class="row">
             <div class="col-4"></div>
-            <div class="col-4 d-flex flex-column justify-content-center align-items-center" x-data="{list: ListComponent('🌵 To Do List')}">
+                <div class="col-4 d-flex flex-column justify-content-center align-items-center">
+                    <template x-if="home.lists.length == 0">
+                        <h1 class="text-center">Crie sua primeira lista!</h1>
+                    </template>
+                    <template x-for="list of home.lists">
                 <div id="list-container">
                     <h1 x-text="list.name" class="text-center"></h1>
                     <div x-data="{ newTodo: '' }">
-                        <div>
                             <template x-if="list.todos.length == 0">
-								<p class="text-center">To Do list is empty.</p>
+                                    <p class="text-center">Lista vazia.</p>
 							</template>
                             <template x-if="list.todos.length > 0">
 								<ul class="d-flex flex-column justify-content-center align-items-center">
@@ -50,7 +56,8 @@
                             </template>
                             <div class="d-flex flex-row justify-content-center align-items-center">
                                 <div class="p-1">
-                                    <input class="p-1" type="text" x-model="newTodo" placeholder="new to do..." required />
+                                        <input class="p-1" type="text" x-model="newTodo" placeholder="new to do..."
+                                            required />
                                 </div>
                                 <div class="p-1">
                                     <a class="btn btn-primary" @click="list.addTodo(newTodo)">
@@ -61,11 +68,16 @@
                             <hr>
                         </div>
                     </div>
+                    </template>
+                    <div>
+                        <a class="btn btn-primary" @click="home.addList()">
+                            <i class="fa-solid fa-plus"></i>
+                        </a>
                 </div>
             </div>
             <div class="col-4"></div>
         </div>
-        </template>
+        </div>
         </div>
     </body>
 
