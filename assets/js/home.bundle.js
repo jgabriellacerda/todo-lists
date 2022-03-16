@@ -8,7 +8,6 @@ const HomeComponent = () => {
 	let lists = [];
 
 	function addList() {
-		console.log("add list");
 		listCounter++;
 		let listID = listCounter;
 		let newList = new ListComponent("Nova lista", listID);
@@ -30,6 +29,8 @@ const HomeComponent = () => {
 		deleteList,
 	};
 };
+
+module.exports = HomeComponent;
 
 window.ListComponent = ListComponent;
 window.HomeComponent = HomeComponent;
@@ -85,6 +86,7 @@ let ListComponent = function (name, ID) {
 		popTodo,
 		addTodo,
 		deleteTodo,
+		updateName,
 	};
 };
 
