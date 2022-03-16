@@ -5,6 +5,7 @@
     "main": "Home.js",
     "scripts": {
         "build": "browserify src/js/Home.js > assets/js/home.bundle.js",
+        "watch": "watchify src/js/Home.js -o assets/js/home.bundle.js -v",
         "test": "jest"
     },
     "repository": {
@@ -20,7 +21,8 @@
     "homepage": "https://github.com/jgabriellacerda/todo-lists#readme",
     "devDependencies": {
         "browserify": "^17.0.0",
-        "jest": "^27.5.1"
+        "jest": "^27.5.1",
+        "watchify": "^4.0.0"
     },
     "dependencies": {
         "alpinejs": "^3.9.1"
