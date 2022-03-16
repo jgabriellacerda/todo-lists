@@ -1,84 +1,92 @@
 <!DOCTYPE html>
 <html lang="en">
 
-    <head>
-        <meta charset="UTF-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>🌵 To Do Lists</title>
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>🌵 To Do Lists</title>
 
-        <script src="https://kit.fontawesome.com/61ada1e52f.js" crossorigin="anonymous"></script>
-        <script src="./assets/js/jquery.min.js"></script>
-        <script src="./assets/js/sweetalert2.all.min.js"></script>
-        <script src="./assets/js/index.min.js"></script>
-        <script defer src="./assets/js/alpine.min.js"></script>
-        <script src="./assets/js/home.bundle.js"></script>
+    <script src="https://kit.fontawesome.com/61ada1e52f.js" crossorigin="anonymous"></script>
+    <script src="./assets/js/jquery.min.js"></script>
+    <script src="./assets/js/sweetalert2.all.min.js"></script>
+    <script src="./assets/js/index.min.js"></script>
+    <script defer src="./assets/js/alpine.min.js"></script>
+    <script src="./assets/js/home.bundle.js"></script>
 
-        <link rel="stylesheet" href="./assets/js/bootstrap.min.css">
-        <link rel="stylesheet" href="./Home.css">
+    <link rel="stylesheet" href="./assets/js/bootstrap.min.css">
+    <link rel="stylesheet" href="./Home.css">
 
-        <style>
-            @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
 
-            body {
-                font-family: 'Roboto', sans-serif;
-            }
-        </style>
-    </head>
+        body {
+            font-family: 'Roboto', sans-serif;
+        }
+    </style>
+</head>
 
-    <body>
+<body>
     <div id="home-container" x-data="{home: HomeComponent()}">
         <div>
-        <div class="row">
-            <div class="col-4"></div>
+            <div class="row">
+                <div class="col-4"></div>
                 <div class="col-4 d-flex flex-column justify-content-center align-items-center">
                     <template x-if="home.lists.length == 0">
                         <h1 class="text-center">Crie sua primeira lista!</h1>
                     </template>
                     <template x-for="list of home.lists">
-                <div id="list-container">
-                    <h1 x-text="list.name" class="text-center"></h1>
-                    <div x-data="{ newTodo: '' }">
-                            <template x-if="list.todos.length == 0">
-                                    <p class="text-center">Lista vazia.</p>
-							</template>
-                            <template x-if="list.todos.length > 0">
-								<ul class="d-flex flex-column justify-content-center align-items-center">
-									<template x-for="todo in list.todos">
-										<li>
-											<span x-text="todo.text"></span>
-											<a @click="list.deleteTodo(todo.ID)">
-												<i class="fa-solid fa-x delete"></i>
-											</a>
-										</li>
-									</template>
-                            </ul>
-                            </template>
+                        <div id="list-container">
                             <div class="d-flex flex-row justify-content-center align-items-center">
-                                <div class="p-1">
+                                <h1 x-text="list.name" class="text-center"
+                                    @focusout="list.updateName($event.target.textContent)" contenteditable="true">
+                                </h1>
+                                <a @click="home.deleteList(list.ID)">
+                                    <i class="fa-solid fa-x btn-delete-list"></i>
+                                </a>
+                            </div>
+                            <div x-data="{ newTodo: '' }">
+                                <template x-if="list.todos.length == 0">
+                                    <p class="text-center">Lista vazia.</p>
+                                </template>
+                                <template x-if="list.todos.length > 0">
+                                    <ul class="d-flex flex-column justify-content-center align-items-center">
+                                        <template x-for="todo in list.todos">
+                                            <li>
+                                                <span x-text="todo.text"></span>
+                                                <a @click="list.deleteTodo(todo.ID)">
+                                                    <i class="fa-solid fa-x delete"></i>
+                                                </a>
+                                            </li>
+                                        </template>
+                                    </ul>
+                                </template>
+                                <div class="d-flex flex-row justify-content-center align-items-center">
+                                    <div class="p-1">
                                         <input class="p-1" type="text" x-model="newTodo" placeholder="new to do..."
                                             required />
-                                </div>
-                                <div class="p-1">
-                                    <a class="btn btn-primary" @click="list.addTodo(newTodo)">
-                                        <i class="fa-solid fa-plus"></i>
-                                    </a>
+                                    </div>
+                                    <div class="p-1">
+                                        <a class="btn btn-primary" @click="list.addTodo(newTodo)">
+                                            <i class="fa-solid fa-plus"></i>
+                                        </a>
+                                    </div>
                                 </div>
                             </div>
                             <hr>
                         </div>
-                    </div>
                     </template>
                     <div>
                         <a class="btn btn-primary" @click="home.addList()">
                             <i class="fa-solid fa-plus"></i>
                         </a>
+                    </div>
+                </div>
+                <div class="col-4">
                 </div>
             </div>
-            <div class="col-4"></div>
         </div>
-        </div>
-        </div>
-    </body>
+    </div>
+</body>
 
 </html>

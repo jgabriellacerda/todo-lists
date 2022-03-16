@@ -62,8 +62,19 @@ let ListComponent = function (name, ID) {
 		}
 	}
 
-	function deleteTodo(ID) {
-		this.popTodo(ID);
+	function deleteTodo(id) {
+		this.popTodo(id);
+	}
+
+	function updateName(newName) {
+		let oldName = this.name;
+		if (newName != "") {
+			this.name = newName;
+		} else {
+			// Reset name
+			this.name = "";
+			this.name = oldName;
+		}
 	}
 
 	return {
