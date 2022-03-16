@@ -12,7 +12,6 @@ const HomeComponent = () => {
 		let newList = new ListComponent("Nova lista", listID);
 
 		this.lists.push(newList);
-		console.log(newList);
 	}
 
 	function deleteList(ID) {
