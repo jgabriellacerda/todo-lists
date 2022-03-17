@@ -1,3 +1,7 @@
+/**
+ * @jest-environment jsdom
+ */
+
 const ListComponent = require("./ListComponent.js");
 
 describe("ListComponent.js", function () {
@@ -10,38 +14,41 @@ describe("ListComponent.js", function () {
 
 	test("Add To Do", () => {
 		let list = ListComponent("New list");
-		list.addTodo("New todo");
+		list.pushTodo({ id: 1, list_id: 1, task: "New todo" });
 
-		expect(list.todos[0].ID).toBe(1);
-		expect(list.todos[0].text).toBe("New todo");
+		expect(list.todos[0].id).toBe(1);
+		expect(list.todos[0].task).toBe("New todo");
 	});
 
 	test("Add To Do if not empty", () => {
 		let list = ListComponent("New list");
-		list.addTodo("");
+
+		if (list.checkTodoTask("")) {
+			list.pushTodo("");
+		}
 
 		expect(list.todos.length).toBe(0);
 	});
 
 	test("Delete To Do", () => {
 		let list = ListComponent("New list");
-		list.addTodo("New todo");
-		let todoID = list.todos[0].ID;
-		list.deleteTodo(todoID);
+		list.pushTodo({ id: 1, list_id: 1, name: "New todo" });
+		let todo_id = list.todos[0].id;
+		list.popTodo(todo_id);
 
 		expect(list.todos.length).toBe(0);
 	});
 
 	test("Update name", () => {
 		let list = ListComponent("New list");
-		list.updateName("New name");
+		list.setName("New name");
 
 		expect(list.name).toBe("New name");
 	});
 
-	test("Update name if not empty", () => {
+	test("Set name if not empty", () => {
 		let list = ListComponent("New list");
-		list.updateName("");
+		list.setName("");
 
 		expect(list.name).toBe("New list");
 	});

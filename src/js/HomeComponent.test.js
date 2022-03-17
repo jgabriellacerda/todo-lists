@@ -3,6 +3,7 @@
  */
 
 const HomeComponent = require("./HomeComponent");
+const ListComponent = require("./ListComponent");
 
 describe("HomeComponent.js", function () {
 	test("Create home component", () => {
@@ -13,18 +14,22 @@ describe("HomeComponent.js", function () {
 
 	test("Add list", () => {
 		let home = HomeComponent();
-		home.addList();
+
+		let list = ListComponent("List", 1, 1);
+		home.pushList(list);
 
 		expect(home.lists.length).toBe(1);
-		expect(home.lists[0].ID).toBe(1);
-		expect(home.lists[0].name).toBe("Nova lista");
+		expect(home.lists[0].id).toBe(1);
+		expect(home.lists[0].name).toBe("List");
 	});
 
 	test("Delete list", () => {
 		let home = HomeComponent("New list");
-		home.addList();
-		let listID = home.lists[0].ID;
-		home.deleteList(listID);
+		let list = ListComponent("List", 1, 1);
+
+		home.pushList(list);
+		let list_id = home.lists[0].id;
+		home.popList(list_id);
 
 		expect(home.lists.length).toBe(0);
 	});
