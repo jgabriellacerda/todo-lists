@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :todos
+  resources :lists
   get 'home/index'
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
