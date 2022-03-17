@@ -4,8 +4,8 @@
     "description": "Ferramenta para criação de várias listas \"To Do\".",
     "main": "Home.js",
     "scripts": {
-        "build": "browserify src/js/HomeComponent.js > assets/js/home.bundle.js",
-        "watch": "watchify src/js/HomeComponent.js -o assets/js/home.bundle.js -v",
+        "build": "browserify src/js/HomeComponent.js > todo-lists/vendor/javascript/home.bundle.js",
+        "watch": "watchify src/js/HomeComponent.js -o todo-lists/vendor/javascript/home.bundle.js -v",
         "test": "jest"
     },
     "repository": {
