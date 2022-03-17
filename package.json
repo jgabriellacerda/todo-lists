@@ -1,0 +1,30 @@
+{
+    "name": "todo-lists",
+    "version": "1.0.0",
+    "description": "Ferramenta para criação de várias listas \"To Do\".",
+    "main": "Home.js",
+    "scripts": {
+        "build": "browserify src/js/HomeComponent.js > assets/js/home.bundle.js",
+        "watch": "watchify src/js/HomeComponent.js -o assets/js/home.bundle.js -v",
+        "test": "jest"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/jgabriellacerda/todo-lists.git"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/jgabriellacerda/todo-lists/issues"
+    },
+    "homepage": "https://github.com/jgabriellacerda/todo-lists#readme",
+    "devDependencies": {
+        "browserify": "^17.0.0",
+        "jest": "^27.5.1",
+        "watchify": "^4.0.0"
+    },
+    "dependencies": {
+        "alpinejs": "^3.9.1"
+    }
+}

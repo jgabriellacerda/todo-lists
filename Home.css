@@ -1,0 +1,45 @@
+.delete {
+	color: red;
+	font-size: 0.8em;
+}
+
+.delete:hover {
+	cursor: pointer;
+}
+
+#list-container {
+	width: 100%;
+}
+
+.btn-delete-list,
+.btn-delete-list:hover {
+	display: flex;
+	font-size: x-large;
+	padding: 0 5px;
+	color: red;
+	cursor: pointer;
+	text-decoration: none;
+}
+
+.w-100 {
+	width: 100% !important;
+}
+
+.list-card {
+	min-height: 300px;
+}
+
+.btn-add-card {
+	width: fit-content !important;
+	height: fit-content !important;
+}
+
+.flex-1 {
+	flex: 1;
+}
+
+.card-add-list,
+.card-add-list:hover {
+	cursor: pointer;
+	font-size: xx-large;
+}
