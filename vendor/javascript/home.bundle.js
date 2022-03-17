@@ -30,7 +30,6 @@ const HomeComponent = () => {
 			buttonsStyling: false,
 		});
 
-		console.log(result);
 		if (result.isConfirmed) {
 			this.deleteList(id);
 		}
