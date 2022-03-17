@@ -8,14 +8,11 @@
     <title>🌵 To Do Lists</title>
 
     <script src="https://kit.fontawesome.com/61ada1e52f.js" crossorigin="anonymous"></script>
-    <script src="./assets/js/jquery.min.js"></script>
-    <script src="./assets/js/sweetalert2.all.min.js"></script>
-    <script src="./assets/js/bootstrap.bundle.min.js"></script>
-    <script defer src="./assets/js/alpine.min.js"></script>
-    <script src="./assets/js/home.bundle.js"></script>
-
-    <link rel="stylesheet" href="./assets/js/bootstrap.min.css">
-    <link rel="stylesheet" href="./Home.css">
+    <%= javascript_include_tag "alpine.min" %>
+    <%= javascript_include_tag "bootstrap.bundle.min" %>
+    <%= javascript_include_tag "home.bundle" %>
+    <%= javascript_include_tag "jquery.min" %>
+    <%= javascript_include_tag "sweetalert2.all.min" %>
 
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
@@ -27,7 +24,7 @@
 </head>
 
 <body>
-    <div id="home-container" x-data="{home: HomeComponent()}">
+    <div id="home-container" x-data="{home: HomeComponent('<%=  form_authenticity_token %>')}" x-init="await home.init()">
         <div>
             <div class="row">
                 <div class="col-lg-2"></div>
@@ -36,14 +33,12 @@
                         <div class="jumbotron jumbotron-fluid p-4 m-4">
                             <div class="container">
                                 <h1>Minhas listas</h1>
-
                             </div>
-
                         </div>
                         <div class="row w-100">
                             <template x-for="list of home.lists">
                                 <div class="col-12 col-md-6 p-0">
-                                    <div id="list-container">
+                                    <div id="list-container" x-init="await list.init()">
                                         <div class="card border-dark m-4 list-card">
                                             <div class="d-flex flex-column justify-content-between flex-1">
                                                 <div
@@ -53,7 +48,7 @@
                                                         @focusout="list.updateName($event.target.textContent)"
                                                         contenteditable="true">
                                                     </h2>
-                                                    <a class="p-1" @click="home.confirmDelete(list.ID)">
+                                                    <a class="p-1" @click="home.confirmDelete(list.id)">
                                                         <i class="fa-solid fa-x btn-delete-list"></i>
                                                     </a>
                                                 </div>
@@ -69,10 +64,12 @@
                                                             class="d-flex flex-column justify-content-center align-items-center">
                                                             <template x-for="todo in list.todos">
                                                                 <li>
-                                                                    <span x-text="todo.text"></span>
-                                                                    <a @click="list.deleteTodo(todo.ID)">
-                                                                        <i class="fa-solid fa-x delete"></i>
-                                                                    </a>
+                                                                    <div class="d-flex flex-row justify-content-center align-items-center">
+                                                                        <p class="text-center m-0" x-text="todo.task"></p>
+                                                                        <a class="m-2" @click="list.deleteTodo(todo.id)">
+                                                                            <i class="fa-solid fa-x delete"></i>
+                                                                        </a>
+                                                                    </div>
                                                                 </li>
                                                             </template>
                                                         </ul>
